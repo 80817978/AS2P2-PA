@@ -1,0 +1,33 @@
+{% extends "catalog/base.html" %}
+{% block content %}
+  <h1>Name: {{ author.first_name}} {{author.last_name}}</h1>
+
+
+    <p><strong>Date of Birth:</strong> {{ author.date_of_birth}}
+    <strong>Date of Death:</strong> {{ author.date_of_death}}</p>
+    <div>
+    {% if author.author_image %}
+        <img src="{{ author.author_image.url }}">
+    {% endif %}
+    </div>
+
+    <h1>Book List</h1>
+    {% if author_list.html %}
+    {% for book in author.book_set.all %}
+        <li>
+            <a href="{{ book.get_absolute_url }}">{{ book.title }}</a>
+        </li>
+        {% endfor %}
+            {% else %}
+            <p>No Books Available</p>
+        {% endif %}
+
+
+
+  <div style="margin-left:20px;margin-top:20px">
+  </div>
+
+    <form action=http://127.0.0.1:8000/author_list/>
+        <input type="submit" value="Back" />
+    </form>
+{% endblock %}
